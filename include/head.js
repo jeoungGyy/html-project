@@ -9,9 +9,6 @@ str += '<link rel="stylesheet" href="../css/base.css">';
 str += '<link rel="stylesheet" href="../css/style.css">';
 str += '<script src="http://code.jquery.com/jquery-latest.js"></script>';
 str += '<script src="../js/ui.js"></script>';
-str += '<!--[if lt IE 9]>';
-str += '<script src="../js/html5.js"></script>';
-str += '<![endif]-->';
 
 
 document.write(str);
