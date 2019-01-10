@@ -1,4 +1,5 @@
-﻿@charset "utf-8";
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td, header, article, section, aside, nav, figure, figcaption, adress, textarea, input[type=text], input[type=password] {
 	margin:0;
@@ -13,9 +14,10 @@ header, footer, section, article, aside, nav, hgroup, details, menu, figure, fig
 
 html { height:100%;}
 body {
-	font-family:"맑은 고딕", Malgun Gothic;
-	font-size:13px;
-	color:#444;
+	font-family:"Nanum Gothic", "맑은 고딕", Malgun Gothic;
+	font-size:16px;
+	font-weight: 400;
+	color:#333;
 	letter-spacing:-1px;
 	line-height:1;
 }
@@ -29,7 +31,7 @@ select { font-size:100%; vertical-align:middle; background-color:#fff;}
 select[disabled] { background-color: #ccc;}
 
 input[type=submit] { border:0; cursor:pointer; -webkit-appearance: none;}
-input[type=checkbox] { border:1px solid #888; -webkit-border-radius:1px;}
+input[type=checkbox] { border:1px solid #888;}
 input[type=checkbox], input[type=radio]  {
 	width:19px;
 	height:19px;
@@ -43,7 +45,6 @@ input[type=file], input[type=text], input[type=password] {
 	border:1px solid #888;
 	background-color:#fff;
 	-webkit-appearance: none;
-	-webkit-border-radius:0;
 }
 input[type=text]:focus, input[type=password]:focus {
 	background-color:#ecf9ff;
