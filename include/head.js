@@ -3,7 +3,7 @@ var str = '';
 str += '<meta http-equiv="X-UA-Compatible" content="IE=edge">';
 str += '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">';
 str += '<meta name="theme-color" content="#000000">';
-str += '<meta name="description" content="사이트 소개">';
+str += '<meta name="description" content="사이트 소개 320자 ">';
 str += '<meta name="keywords" content="키워드입력, 키워드2, 키워드3">';
 str += '<meta property="og:type" content="website">';
 str += '<meta property="og:title" content="해당 링크의 제목">';
