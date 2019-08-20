@@ -12,6 +12,7 @@ str += '<meta property="og:image" content="썸네일 이미지, http:// 부터 �
 str += '<meta property="og:url" content="링크 주소">';
 str += '<link rel="stylesheet" href="../css/base.css">';
 str += '<link rel="stylesheet" href="../css/style.css">';
+str += '<link rel="stylesheet" href="../css/mobile.css">';
 str += '<script src="http://code.jquery.com/jquery-latest.js"></script>';
 str += '<script src="../js/ui.js"></script>';
 
