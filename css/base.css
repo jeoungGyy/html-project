@@ -15,17 +15,16 @@ header, footer, section, article, aside, nav, hgroup, details, menu, figure, fig
 html { height:100%;}
 body {
 	font-family:"Nanum Gothic", "맑은 고딕", Malgun Gothic;
-	font-size:16px;
-	font-weight: 400;
-	color:#333;
+	font-size:14px;
+	color:#000;
 	letter-spacing:-1px;
 	line-height:1;
 }
 
 a:link,
-a:visited { color:#333; text-decoration:none;}
+a:visited { color:#000; text-decoration:none;}
 
-p { line-height:1.2;}
+p { line-height:1.5;}
 
 select { font-size:100%; vertical-align:middle; background-color:#fff;}
 select[disabled] { background-color: #ccc;}
