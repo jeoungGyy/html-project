@@ -1,15 +1,11 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 
 @media all and (max-width:767px){
 
-
-.container { background-color:blue;}
-
-
-
-
-
-
-
+:root {font-size: 14px;}
 
 }
+
+@media screen and (max-width: 560px) { :root {font-size: 13px;}}
+@media screen and (max-width: 414px) { :root {font-size: 12px;}}
+@media screen and (max-width: 375px) { :root {font-size: 11px;}}
