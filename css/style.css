@@ -1,14 +1,18 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 
 /* 공통 구조
 **********************************************/
 
 /* Global */
+.area { display: flex; position: relative; width: 1000px; margin: 0 auto;}
 
 /* Container */
+.contents { flex: 1; border: 1px solid #000;}
 
 /* GNB */
 
+/* LNB */
+.lnb { width: 200px;}
 
 /* 푸터 */
 
@@ -33,7 +37,7 @@
 **********************************************/
 
 .layer { position: fixed; left:0; top: 0; z-index: 100; overflow-x:hidden; width: 100%; height:100%; padding:20px; background-color: rgba(0, 0, 0, .6);}
-.layer .area { position:relative; left:50%; top:50%; z-index:100; background-color:#f0f0f0;}
+.layer .layerBody { position:relative; left:50%; top:50%; z-index:100; background-color:#f0f0f0;}
 
 
 /* 콘텐츠 명
@@ -41,4 +45,3 @@
 
 /* 하위 콘텐츠 명 */
 
-.container { background-color:red;}
