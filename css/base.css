@@ -116,19 +116,17 @@ legend {
 	overflow:hidden;
 	margin:0;
 	padding:0;
-	visibility:hidden;
-	font-size:0;
 	line-height:0;
 }
 
 /* Table */
 caption {
+	position:absolute;
+	top:-9999px;
 	width: 0;
 	height: 0;
 	overflow: hidden;
 	padding: 0;
-	visibility: hidden;
-	font-size: 0;
 	line-height: 0;
 }
 table {
