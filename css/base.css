@@ -108,7 +108,7 @@ legend {
 .hidden {
 	display:none;
 }
-.visible {
+.invisible {
 	position:absolute;
 	top:-9999px;
 	width:0;
