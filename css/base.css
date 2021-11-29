@@ -108,27 +108,28 @@ legend {
 .hidden {
 	display:none;
 }
-.visible {
-	position:absolute;
-	top:-9999px;
-	width:0;
-	height:0;
-	overflow:hidden;
-	margin:0;
-	padding:0;
-	visibility:hidden;
-	font-size:0;
-	line-height:0;
+.invisible {
+	position: relative;
+	z-index: -1;
+	display: inline-block;
+	overflow: hidden;
+	height: 1px;
+	width: 1px;
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	word-break: initial;
+	word-wrap: initial;
 }
 
 /* Table */
 caption {
+	position:absolute;
+	top:-9999px;
 	width: 0;
 	height: 0;
 	overflow: hidden;
 	padding: 0;
-	visibility: hidden;
-	font-size: 0;
 	line-height: 0;
 }
 table {
