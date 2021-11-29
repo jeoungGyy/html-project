@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>레이어 팝업</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+	<style>
+		/* 기본속성 */ 
+		* { margin: 0; padding: 0; box-sizing:border-box;}
+		button { border:0 none; padding:0; margin:0; font-size:100%; color:#000; vertical-align:middle; background:transparent; cursor:pointer;}
+		button::-moz-focus-inner { margin: -1px; padding: 0;}
+		button:focus:not(:focus-visible) { outline: 2px solid #000; border-radius: 4px;}
+		body { padding: 20px 15px; background-color: #fafafa;}
+		
+		/* 공통 */ 
+		.layerLink { width: 250px; padding: 10px 20px; border: 1px solid #000;}
+		.layerPopup { display: none; position: fixed; z-index: 1000; top: 0; right: 0; bottom: 0; left: 0; padding: 50px; background: rgba(0,0,0,0.4); outline: none; opacity: 0; transition: opacity .3s;}
+		.layerPopup::after { content: ""; display: inline-block; height: 100%; vertical-align: middle;}
+		.layerPopup.open { display: block;}
+		.layerPopup.active { opacity: 1;}
+		
+		.layerBody { overflow: hidden; vertical-align: middle; background: #fff; border-radius: 4px;}
+		.layerTitle { padding: 10px; font-size: 15px; color: #fff; background-color: #222;}
+		.bSet { padding: 10px 0; text-align: center; border-top: 1px solid #ddd;}
+		.bSet button { padding: 5px 15px; font-size: 13px; border: 1px solid #ddd;}
+		.layerClose { position: absolute; right: 10px; top: 9px; font-size: 13px; color: #fff;}
+		.pGroup p ~ p { margin-top: 15px;}
+
+		/* 경고창 레이어 */
+		#layerPopup .layerCenter { display: inline-block; vertical-align: middle;}
+		#layerPopup .layerBody { position:relative; left:50%; top:50%; width:300px; margin: -150px 0 0 -150px;}
+		#layerPopup .layerContent { padding: 10px; text-align: center;}
+
+		/* 기본 스크롤 레이어 */
+		#layerPopup2 .layerCenter { display: inline-block; vertical-align: middle;}
+		#layerPopup2 .layerBody { position:relative; left:50%; top:50%; width:500px; transform:translate(-50%, -50%);}
+		#layerPopup2 .layerContent { overflow: auto; max-height: 300px; padding: 10px;}
+
+		/* 유동적 스크롤(IE X) 레이어 */
+		#layerPopup3 { padding: 30px;}
+		#layerPopup3 .layerBody { display: flex; flex-direction: column; position: relative; left: 0; right: 0; top: 0; bottom: 0; width: 450px; max-height: 100%; margin: 0 auto; text-align: left; vertical-align: middle; background: #fff; border-radius: 4px;}
+		#layerPopup3 .layerContent { flex: 1; overflow: auto; padding: 10px;}
+	</style>
+</head>
+
+<body>
+<div id="wrap">
+	
+	<button type="button" class="layerLink" aria-controls="layerPopup">경고창 레이어</button>
+	<button type="button" class="layerLink" aria-controls="layerPopup2">기본 스크롤 레이어</button>
+	<button type="button" class="layerLink" aria-controls="layerPopup3">유동적 스크롤(IE X) 레이어</button>
+
+	<div id="layerPopup" class="layerPopup" role="dialog" aria-modal="true" aria-labelledby="layerTitle" tabindex="0">
+		<div class="layerBody">
+			<h5 id="layerTitle" class="layerTitle">경고창 레이어: 스크롤 없음</h5>
+			<div class="layerContent" tabindex="0">
+				<p style="font-weight: 700;">코로나19 안내사항</p>
+				<p style="margin-top: 10px; font-size: 13px;">발영 또는 호흡기 증상이 있는 경우 선별진료가 가능한 의료기관이나 관할보건소를 우선적으로 방문하십시오.</p>
+			</div>
+			<div class="bSet">
+				<button type="button">확인</button>
+			</div>
+			<button type="button" class="layerClose" aria-label="창 닫기">창 닫기</button>
+		</div>
+	</div>
+
+	<div id="layerPopup2" class="layerPopup" role="dialog" aria-modal="true" aria-labelledby="layerTitle2" tabindex="0">
+		<div class="layerBody">
+			<h5 id="layerTitle2" class="layerTitle">기본 스크롤 레이어</h5>
+			<div class="layerContent" tabindex="0">
+				<div class="pGroup">
+					<p>근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다. 국민경제자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 법원은 최고법원인 대법원과 각급법원으로 조직된다.</p>
+					<p>법률안에 이의가 있을 때에는 대통령은 제1항의 기간내에 이의서를 붙여 국회로 환부하고, 그 재의를 요구할 수 있다. 국회의 폐회중에도 또한 같다. 국가는 지역간의 균형있는 발전을 위하여 지역경제를 육성할 의무를 진다.</p>
+					<p>대통령은 취임에 즈음하여 다음의 선서를 한다. 대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기타의 사유로 그 자격을 상실한 때에는 60일 이내에 후임자를 선거한다.</p>
+					<p>근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다. 국민경제자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 법원은 최고법원인 대법원과 각급법원으로 조직된다.</p>
+					<p>국가는 건전한 소비행위를 계도하고 생산품의 품질향상을 촉구하기 위한 소비자보호운동을 법률이 정하는 바에 의하여 보장한다. 계엄을 선포한 때에는 대통령은 지체없이 국회에 통고하여야 한다.</p>
+					<p>군인·군무원·경찰공무원 기타 법률이 정하는 자가 전투·훈련등 직무집행과 관련하여 받은 손해에 대하여는 법률이 정하는 보상외에 국가 또는 공공단체에 공무원의 직무상 불법행위로 인한 배상은 청구할 수 없다.</p>
+					<p>군인·군무원·경찰공무원 기타 법률이 정하는 자가 전투·훈련등 직무집행과 관련하여 받은 손해에 대하여는 법률이 정하는 보상외에 국가 또는 공공단체에 공무원의 직무상 불법행위로 인한 배상은 청구할 수 없다.</p>
+					<p>법률안에 이의가 있을 때에는 대통령은 제1항의 기간내에 이의서를 붙여 국회로 환부하고, 그 재의를 요구할 수 있다. 국회의 폐회중에도 또한 같다. 국가는 지역간의 균형있는 발전을 위하여 지역경제를 육성할 의무를 진다.</p>
+					<p>대통령은 취임에 즈음하여 다음의 선서를 한다. 대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기타의 사유로 그 자격을 상실한 때에는 60일 이내에 후임자를 선거한다.</p>
+				</div>
+			</div>
+			<div class="bSet">
+				<button type="button">확인</button>
+			</div>
+			<button type="button" class="layerClose" aria-label="창 닫기">창 닫기</button>
+		</div>
+	</div>
+
+	<div id="layerPopup3" class="layerPopup" role="dialog" aria-modal="true" aria-labelledby="layerTitle3" tabindex="0">
+		<div class="layerBody">
+			<h5 id="layerTitle3" class="layerTitle">유동적 스크롤 레이어</h5>
+			<div class="layerContent" tabindex="0">
+				<div class="pGroup">
+					<p>법률안에 이의가 있을 때에는 대통령은 제1항의 기간내에 이의서를 붙여 국회로 환부하고, 그 재의를 요구할 수 있다. 국회의 폐회중에도 또한 같다. 국가는 지역간의 균형있는 발전을 위하여 지역경제를 육성할 의무를 진다.</p>
+					<p>국가는 건전한 소비행위를 계도하고 생산품의 품질향상을 촉구하기 위한 소비자보호운동을 법률이 정하는 바에 의하여 보장한다. 계엄을 선포한 때에는 대통령은 지체없이 국회에 통고하여야 한다.</p>
+					<p>근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다. 국민경제자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 법원은 최고법원인 대법원과 각급법원으로 조직된다.</p>
+					<p>군인·군무원·경찰공무원 기타 법률이 정하는 자가 전투·훈련등 직무집행과 관련하여 받은 손해에 대하여는 법률이 정하는 보상외에 국가 또는 공공단체에 공무원의 직무상 불법행위로 인한 배상은 청구할 수 없다.</p>
+					<p>대통령은 취임에 즈음하여 다음의 선서를 한다. 대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기타의 사유로 그 자격을 상실한 때에는 60일 이내에 후임자를 선거한다.</p>
+					<p>군인·군무원·경찰공무원 기타 법률이 정하는 자가 전투·훈련등 직무집행과 관련하여 받은 손해에 대하여는 법률이 정하는 보상외에 국가 또는 공공단체에 공무원의 직무상 불법행위로 인한 배상은 청구할 수 없다.</p>
+					<p>근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다. 국민경제자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 법원은 최고법원인 대법원과 각급법원으로 조직된다.</p>
+					<p>대통령은 취임에 즈음하여 다음의 선서를 한다. 대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기타의 사유로 그 자격을 상실한 때에는 60일 이내에 후임자를 선거한다.</p>
+					<p>법률안에 이의가 있을 때에는 대통령은 제1항의 기간내에 이의서를 붙여 국회로 환부하고, 그 재의를 요구할 수 있다. 국회의 폐회중에도 또한 같다. 국가는 지역간의 균형있는 발전을 위하여 지역경제를 육성할 의무를 진다.</p>
+				</div>
+			</div>
+			<div class="bSet">
+				<button type="button">확인</button>
+			</div>
+			<button type="button" class="layerClose" aria-label="창 닫기">창 닫기</button>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function () {
+
+	layerPopup = {
+		init: function () {
+			var $layerLink = $('.layerLink');
+
+			$layerLink.off().on('click', function(){
+				var _target = $("#" + $(this).attr("aria-controls"));
+				layerPopup.open(this, _target);
+			});
+		},
+		open: function (_this, _target) {
+			_target.addClass('open').focus();
+			TweenLite.to(_target, 0.3, {onComplete:function() {
+				_target.addClass('active');
+				_target.find('.layerClose').off().on({
+					'click': function() {
+						layerPopup.close(_this, _target);
+					},
+					'keydown': function(e) {
+						var _keyCode = e.keyCode || e.which;
+						if(_keyCode === 9) {
+							if(!e.shiftKey) {
+								e.preventDefault();
+								_target.focus();
+							}
+						}
+					}
+				});
+				// 레이어 팝업 외부 클릭 시 창닫기
+				$(document).off().on('click', function (e){
+					if(_target.has(e.target).length === 0) {
+						layerPopup.close(_this, _target);
+					}
+				});
+			}});
+		},
+		close: function (_this, _target) {
+			$(document).off();
+			_target.removeClass("active");
+			TweenLite.to(_target, 0.3, {onComplete:function() {
+				_target.removeClass("open");
+				_this.focus();
+				_this = null;
+				_target = null;
+			}});
+		},
+	}
+
+	layerPopup.init();
+
+});
+</script>
+</body>
+</html>

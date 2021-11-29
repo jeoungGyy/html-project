@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>탭</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+	<style>
+		/* 기본속성 */ 
+		* { margin: 0; padding: 0; box-sizing:border-box;}
+		body { padding: 50px;}
+		button { border:0 none; padding:0; margin:0; font-size:100%; color:#000; vertical-align:middle; background:transparent; cursor:pointer;}
+		button::-moz-focus-inner { margin: -1px; padding: 0;}
+		button:focus:not(:focus-visible) { outline: 2px solid #000; border-radius: 4px;}
+		ol, ul { list-style: none;}
+		h1 { margin-bottom: 20px; font-size: 20px;}
+		.invisible { overflow:hidden; position:absolute;	top:-9999px; width:0; height:0; margin:0;	padding:0; line-height:0;}
+		
+		/* 탭 */
+		.tablist { display: flex;}
+		.tablist .tab { flex: 1; display: block; width: 100%; border: 1px solid #ddd;}
+		.tablist .tab.active { background-color: #ddd;}
+		.target { margin-top: 50px;}
+		.pGroup p { font-size: 13px;}
+		.pGroup p ~ p { margin-top: 15px;}
+
+		.tabpanel { display: none; opacity: 0; transition: opacity .3s;}
+		.tabpanel.open { display: block;}
+		.tabpanel.active { opacity: 1;}
+	</style>
+</head>
+
+<body>
+<div id="wrap">
+	
+	<div>
+		<div class="tablist" role="tablist">
+			<button type="button" id="tabBtn1" class="tab active" role="tab" aria-selected="true" aria-controls="tabTarget1" tabindex="0"><span class="invisible">현재 단계</span>첫번째 탭</button>
+			<button type="button" id="tabBtn2" class="tab" role="tab" aria-selected="false" aria-controls="tabTarget2" tabindex="-1">두번째 탭</button>
+			<button type="button" id="tabBtn3" class="tab" role="tab" aria-selected="false" aria-controls="tabTarget3" tabindex="-1">세번째 탭</button>
+		</div>
+	
+		<div class="target">
+			<!-- 첫번째 탭 내용 -->
+			<div id="tabTarget1" class="tabpanel open active" role="tabpanel" aria-labelledby="tabBtn1" tabindex="0">
+				<div class="pGroup">
+					<p>감사원은 원장을 포함한 5인 이상 11인 이하의 감사위원으로 구성한다. 전직대통령의 신분과 예우에 관하여는 법률로 정한다. 국가안전보장회의는 대통령이 주재한다.</p>
+					<p>국회의원은 법률이 정하는 직을 겸할 수 없다. 국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다.</p>
+					<p>각급 선거관리위원회의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 민주평화통일자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다.</p>
+				</div>
+			</div>
+			<!-- //첫번째 탭 내용 -->
+		
+			<!-- 두번째 탭 내용 -->
+			<div id="tabTarget2" class="tabpanel" role="tabpanel" aria-labelledby="tabBtn2">
+				<div class="pGroup">
+					<p>모든 국민의 재산권은 보장된다. 그 내용과 한계는 법률로 정한다. 국가원로자문회의의 의장은 직전대통령이 된다. 다만, 직전대통령이 없을 때에는 대통령이 지명한다.</p>
+					<p>지방의회의 조직·권한·의원선거와 지방자치단체의 장의 선임방법 기타 지방자치단체의 조직과 운영에 관한 사항은 법률로 정한다. 학교교육 및 평생교육을 포함한 교육제도와 그 운영, 교육재정 및 교원의 지위에 관한 기본적인 사항은 법률로 정한다.</p>
+					<p>대법원장의 임기는 6년으로 하며, 중임할 수 없다. 대법원에 대법관을 둔다. 다만, 법률이 정하는 바에 의하여 대법관이 아닌 법관을 둘 수 있다. 헌법재판소는 법률에 저촉되지 아니하는 범위안에서 심판에 관한 절차, 내부규율과 사무처리에 관한 규칙을 제정할 수 있다.</p>
+				</div>
+			</div>
+			<!-- //두번째 탭 내용 -->
+		
+			<!-- 세번째 탭 내용 -->
+			<div id="tabTarget3" class="tabpanel" role="tabpanel" aria-labelledby="tabBtn3">
+				<div class="pGroup">
+					<p>원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 대법관은 대법원장의 제청으로 국회의 동의를 얻어 대통령이 임명한다.</p>
+					<p>모든 국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. 대한민국의 경제질서는 개인과 기업의 경제상의 자유와 창의를 존중함을 기본으로 한다.</p>
+					<p>대통령은 헌법과 법률이 정하는 바에 의하여 국군을 통수한다. 국가는 대외무역을 육성하며, 이를 규제·조정할 수 있다. 대통령이 임시회의 집회를 요구할 때에는 기간과 집회요구의 이유를 명시하여야 한다.</p>
+				</div>
+			</div>
+			<!-- //세번째 탭 내용 -->
+		</div>
+	</div>
+	
+</div>
+
+<script>
+$(document).ready(function () {
+
+	tabs = {
+		init: function () {
+			// 참조: https://mulder21c.github.io/2018/06/04/how-to-make-accessible-tab-content/ 소스 수정
+			var $tab = $('.tab');
+			
+			$tab.off().on({
+				'click': function() {
+					var _target = $("#" + $(this).attr("aria-controls"));
+					tabs.openClick(this, _target);
+				},
+				'keydown': function(e) {
+					var _target = $("#" + $(this).attr("aria-controls"));
+					tabs.openKeydown(this, _target, e);
+				},
+			});
+		},
+		openClick: function (_this, _target) {
+			var $tab = $('.tab');
+			var $tabpanel = $('.tabpanel');
+
+			$(_this).addClass("active").siblings().removeClass("active");
+			_target.addClass('open').siblings().removeClass('open');
+
+			TweenLite.to(_target, 0, {onComplete:function() {
+				$(_this).addClass('active').attr({'aria-selected': true, 'tabindex': 0}).focus().siblings().removeClass('active').attr({'aria-selected': false, 'tabindex': -1})
+				_target.addClass('active').attr('tabindex', 0).siblings().removeClass('active').attr('tabindex', -1);
+
+				tabs.addTag();
+			}});
+		},
+		openKeydown: function (_this, _target, _event) {
+			event = _event || window.event;
+			var keycode = event.keyCode || event.which;
+
+			switch(keycode){
+				case 37: // left arrow
+					if(_this.previousElementSibling){
+						$(_this).removeClass("active").attr({"tabindex": "-1", "aria-selected": "false"}).prev().addClass("active").attr({"tabindex": "0", "aria-selected": "true"}).focus();
+						_target.removeClass('open').prev().attr("tabindex", "0").addClass("open");
+
+						TweenLite.to(_target, .01, {onComplete:function() {
+							_target.removeClass('active').attr('tabindex', -1).prev().addClass('active').attr('tabindex', 0);
+
+							tabs.addTag();
+						}});
+					}else{
+						$(_this).removeClass("active").attr({"tabindex": "-1", "aria-selected": "false"}).siblings().last().addClass("active").attr({"tabindex": "0", "aria-selected": "true"}).focus();
+						_target.removeClass('open').siblings().last().attr("tabindex", "0").addClass("open");
+
+						TweenLite.to(_target, .01, {onComplete:function() {
+							_target.removeClass('active').attr('tabindex', -1).siblings().last().addClass('active').attr('tabindex', 0);
+
+							tabs.addTag();
+						}});
+					}
+					break;
+				case 39: // right arrow
+					if(_this.nextElementSibling){
+						$(_this).removeClass("active").attr({"tabindex": "-1", "aria-selected": "false"}).next().addClass("active").attr({"tabindex": "0", "aria-selected": "true"}).focus();
+						_target.removeClass('open').next().attr("tabindex", "0").addClass("open");
+
+						TweenLite.to(_target, .01, {onComplete:function() {
+							_target.removeClass('active').attr('tabindex', -1).next().addClass('active').attr('tabindex', 0);
+
+							tabs.addTag();
+						}});
+					}else{
+						$(_this).removeClass("active").attr({"tabindex": "-1", "aria-selected": "false"}).siblings().first().addClass("active").attr({"tabindex": "0", "aria-selected": "true"}).focus();
+						_target.removeClass('open').siblings().first().attr("tabindex", "0").addClass("open");
+
+						TweenLite.to(_target, .01, {onComplete:function() {
+							_target.removeClass('active').attr('tabindex', -1).siblings().first().addClass('active').attr('tabindex', 0);
+
+							tabs.addTag();
+						}});
+					}
+					break;
+ 			}
+		},
+		addTag: function () {
+			var $tablist = $('.tablist');
+
+			$tablist.find('.invisible').remove();
+			$tablist.find('.active').prepend('<span class="invisible">현재 단계</span>');
+		},
+	}
+
+	tabs.init();
+
+});
+</script>
+</body>
+</html>

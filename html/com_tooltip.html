@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>툴팁</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+	<style>
+		/* 기본속성 */ 
+		* { margin: 0; padding: 0; box-sizing:border-box;}
+		button { border:0 none; padding:0; margin:0; font-size:100%; color:#000; vertical-align:middle; background:transparent; cursor:pointer;}
+		button::-moz-focus-inner { margin: -1px; padding: 0;}
+		button:focus:not(:focus-visible) { outline: 2px solid #000; border-radius: 50%;}
+
+		/* 툴팁 */ 
+		.design { display: flex; height: 100vh; justify-content: center; align-items: center; justify-content: center;}
+		.tooltip { display: inline-block; width: 30px; height: 30px; margin: 0 20px;}
+		.tooltipBtn { display: block; width: 100%; height: 100%; color: #fff; background-color: burlywood; border-radius: 50%;}
+		.pGroup p { font-size: 13px;}
+		.pGroup p ~ p { margin-top: 15px;}
+
+		.tooltipTarget { display: none; position: absolute; left: 0; top: 0; z-index: 500; width: 200px; padding: 10px; border: 1px solid #000; background-color: #fff; border-radius: 8px; opacity: 0; transition: opacity .3s;}
+		.tooltipTarget.open { display: block;}
+		.tooltipTarget.active { opacity: 1;}
+		.tooltipTargetheader { padding-bottom: 10px; border-bottom: 1px solid #000;}
+		.tooltipTargetBody { padding-top: 10px;}
+		.tooltipTargetClose { position: absolute; right: 10px; top: 7px;}
+	</style>
+</head>
+
+<body>
+<div id="wrap">
+	<div class="design">
+		<div class="tooltip">
+			<button type="button" class="tooltipBtn" onclick="tooTip.show(this, 'tooltip1', 'top');" aria-describedby="tooltip1" title="도움말 닫힘">?</button>
+		</div>
+		<div class="tooltip">
+			<button type="button" class="tooltipBtn" onclick="tooTip.show(this, 'tooltip2', 'bottom');" aria-describedby="tooltip2" title="도움말 닫힘">!</button>
+		</div>
+	</div>
+</div>
+
+<div id="tooltip1" class="tooltipTarget" role="tooltip" tabindex="0">
+		<h5 class="tooltipTargetheader">첫번째 툴팁 제목</h5>
+		<div class="tooltipTargetBody">
+			<div class="pGroup">
+				<p>모든 국민은 근로의 권리를 가진다.</p>
+			</div>
+		</div>
+		<button type="button" class="tooltipTargetClose">닫기</button>
+</div>
+
+<div id="tooltip2" class="tooltipTarget" role="tooltip" tabindex="0">
+	<h5 class="tooltipTargetheader">두번째 툴팁 제목</h5>
+	<div class="tooltipTargetBody">
+		<div class="pGroup">
+			<p>훈장등의 영전은 이를 받은 자에게만 효력이 있고, 어떠한 특권도 이에 따르지 아니한다.</p>
+			<p>국가는 노인과 청소년의 복지향상을 위한 정책을 실시할 의무를 진다.</p>
+		</div>
+	</div>
+	<button type="button" class="tooltipTargetClose">닫기</button>
+</div>
+
+<script>
+$(document).ready(function () {
+
+	tooTip = {
+		show: function (el, id, direction) {
+			var _this = $(el);
+			var _target = $('#'+id);
+			var _elW = _this.outerWidth();
+			var _elH = _this.outerHeight();
+			var _targetW = _target.outerWidth();
+			var _targetH = _target.outerHeight();
+			var _elLeft = _this.offset().left;
+			var _elTop = _this.offset().top;
+			var $tooltipBtn = $('.tooltipBtn');
+			var $tooltipTarget = $('.tooltipTarget');
+
+			$tooltipTarget.removeClass('open');
+			_target.addClass('open').focus();
+			$tooltipBtn.attr('title', '도움말 닫힘');
+			_this.attr('title', '도움말 열림');
+
+			TweenLite.to(_target, 0, { onComplete:function() {
+				switch (direction) {
+					case 'top' :
+						_elTop =  _elTop + _elH + 5;
+						break;
+					case 'bottom' :
+						_elTop = _elTop - _targetH - 5;
+						break;
+				}
+				$tooltipTarget.removeClass('active');
+				_target.addClass('active').css({'left': _elLeft, 'top': _elTop});
+				_target.find('.tooltipTargetClose').off().on({
+					'click': function() {
+						tooTip.close(_this, _target);
+					},
+					'keydown': function(e) {
+						var _keyCode = e.keyCode || e.which;
+						if(_keyCode === 9) {
+							if(!e.shiftKey) {
+								e.preventDefault();
+								_target.focus();
+							}
+						}
+					}
+				});
+			}});
+		},
+		close: function (_this, _target) {
+			_target.removeClass("active");
+			TweenLite.to(_target, {onComplete:function() {
+				_target.removeClass("open");
+				_this.focus().attr('title', '도움말 닫힘');
+				_this = null;
+				_target = null;
+			}});
+		},
+	}
+
+});
+</script>
+</body>
+</html>

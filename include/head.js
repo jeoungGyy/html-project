@@ -21,8 +21,8 @@ str += '<meta name="twitter:url" content="사이트 주소">';
 str += '<meta name="twitter:description" content="사이트 소개.">';
 str += '<meta name="twitter:image" content="썸네일 이미지, http:// 부터 시작하는 절대 주소를 써야합니다.">';
 str += '<link rel="stylesheet" href="../css/base.css">';
-str += '<link rel="stylesheet" href="../css/style.css">';
-str += '<link rel="stylesheet" href="../css/mobile.css">';
+// str += '<link rel="stylesheet" href="../css/style.css">';
+// str += '<link rel="stylesheet" href="../css/mobile.css">';
 str += '<script src="http://code.jquery.com/jquery-latest.js"></script>';
 str += '<script src="../js/ui.js"></script>';
 

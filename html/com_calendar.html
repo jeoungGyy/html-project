@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>달력</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.4.0/dist/duet/themes/default.css" />
+	<script type="module" src="https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.4.0/dist/duet/duet.esm.js"></script>
+	<script nomodule src="https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.4.0/dist/duet/duet.js"></script>
+
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<style>
+		/* 기본속성 */ 
+		* { margin: 0; padding: 0; box-sizing:border-box;}
+		body { padding: 50px;}
+		button { border:0 none; padding:0; margin:0; font-size:100%; color:#000; vertical-align:middle; background:transparent; cursor:pointer;}
+		button::-moz-focus-inner { margin: -1px; padding: 0;}
+		button:focus:not(:focus-visible) { outline: 2px solid #000; border-radius: 4px;}
+		h1 { margin-bottom: 10px; font-size: 20px;}
+
+		/* 접근성 및 반응형 달력 디자인 */
+		.mtb { display: block; margin-bottom: 5px;}
+
+
+		/* jQueryUI 달력 디자인 */
+		.calendarGroup { position: relative; display: inline-block;}
+		.calendarGroup .hasDatepicker { height: 35px; padding: 0 5px; font-size: 15px; border: 1px solid #ddd; border-radius: 4px;}
+		.calendarGroup img { position: absolute; right: 3px; top: 3px; cursor: pointer;}
+
+		.ui-datepicker { display: none; width: 400px; margin: 5px 0; padding: 20px 25px 10px; background-color: #fff; border: 1px solid #222 !important; border-radius: 8px; box-shadow: 0 6px 6px rgb(0 0 0 / 10%); box-sizing: border-box;}
+		.ui-datepicker .ui-datepicker-header { position: relative;}
+		.ui-datepicker .ui-datepicker-header .ui-datepicker-prev,
+		.ui-datepicker .ui-datepicker-header .ui-datepicker-next { position: absolute; top: 9px; width: 18px; height: 18px; cursor: pointer;}
+		.ui-datepicker .ui-datepicker-header .ui-datepicker-prev { left: 15px; background: url(https://img.icons8.com/external-those-icons-lineal-color-those-icons/24/000000/external-arrow-arrows-those-icons-lineal-color-those-icons.png) no-repeat; background-size: 18px; transform: rotate(180deg);}
+		.ui-datepicker .ui-datepicker-header .ui-datepicker-next { right: 15px; background: url(https://img.icons8.com/external-those-icons-lineal-color-those-icons/24/000000/external-arrow-arrows-those-icons-lineal-color-those-icons.png) no-repeat; background-size: 18px;}
+		.ui-datepicker .ui-datepicker-header .ui-datepicker-prev span,
+		.ui-datepicker .ui-datepicker-header .ui-datepicker-next span { font-size: 0;}
+		.ui-datepicker .ui-datepicker-title { font-size: 0; text-align: center;}
+		.ui-datepicker .ui-datepicker-title select { width: 100px; height: 35px; margin: 0 5px; border: 1px solid #ddd; border-radius: 4px;}
+		.ui-datepicker .ui-datepicker-calendar { margin-top: 15px;}
+		.ui-datepicker .ui-datepicker-calendar td { width: 50px; height: 40px; text-align: center;}
+		.ui-datepicker .ui-datepicker-calendar td a { display: flex; justify-content: center; align-items: center; width: 40px; height: 40px; margin: 0 auto; color: #000; text-decoration: none;}
+		.ui-datepicker .ui-datepicker-today a { background-color: #ddd; border-radius: 50%;}
+		.ui-datepicker td.ui-datepicker-week-end a { color: #FF6E91;}
+	</style>
+</head>
+
+<body>
+<div id="wrap">
+
+	<h1>접근성 및 반응형 달력</h1>
+	<section>
+		<label for="date" class="mtb">https://github.com/duetds/date-picker</label>
+		<duet-date-picker identifier="date"></duet-date-picker>
+	</section>
+
+	<br><br>
+
+	<h1>jQueryUI 달력</h1>
+	<section>
+		<span class="calendarGroup"><input type="text" id="datepicker"></span>
+	</section>
+
+</div>
+
+<script>
+	$(function() {
+		// jQueryUI 달력
+		$("#datepicker").datepicker({
+				dateFormat: 'yy-mm-dd' //달력 날짜 형태
+				,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+				,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
+				,changeYear: true //option값 년 선택 가능
+				,changeMonth: true //option값  월 선택 가능                
+				,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+				,buttonImage: "https://img.icons8.com/windows/32/000000/calendar.png" //버튼 이미지 경로
+				,buttonImageOnly: false //버튼 태그 안에 이미지를 넣음
+				,buttonText: "선택" //버튼 호버 텍스트              
+				,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+				,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
+				,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
+				,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
+				,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
+				,minDate: "-5Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+				,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+		});                    
+		
+		//초기값을 오늘 날짜로 설정해줘야 합니다.
+		$('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
+	});
+</script>
+</body>
+</html>

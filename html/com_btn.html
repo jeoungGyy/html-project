@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>버튼 모음</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<style>
+		/* 기본속성 */
+		* { margin: 0; padding: 0; font-family: '맑은 고딕'; box-sizing:border-box;}
+		button { border:0 none; padding:0; margin:0; font-size:100%; color:#000; vertical-align:middle; background:transparent; cursor:pointer;}
+		body { padding: 20px;}
+		ul, ol { list-style: none;}
+		a { color: #000; text-decoration:none;}
+
+		.btns { display: flex; margin-top: 10px;}
+		
+		/* 공통 */
+		.btn { display: inline-flex; align-items: center; justify-content: center; margin-right: 10px; border-radius: 4px; transition: all .3s ease;}
+		.btn:active { transition: none;}
+		.btn.roundGray { border: 1px solid #ddd;}
+		.btn.roundGray:hover { border: 1px solid #000;}
+		.btn.roundGray:active { border: 1px solid #ddd;}
+		.btn.bgGray { background-color: #ddd;}
+		.btn.bgGray:hover { background-color: #ccc;}
+		.btn.bgGray:active { background-color: #ddd;}
+		.btn.bgBlue { color: #fff; background-color: darkblue;}
+		.btn.bgBlue:hover { background-color: #00005e;}
+		.btn.bgBlue:active { background-color: darkblue;}
+
+		/* 기본 버튼 */
+		.btn.default { min-width: 100px; height: 40px; padding: 0 10px; font-size: 14px;}
+
+		/* 작은 버튼 */
+		.btn.small { min-width: 80px; height: 30px; padding: 0 10px; font-size: 13px;}
+
+		/* 애니메이션 버튼 */
+		.amimationBtnA { display: inline-flex; align-items: center; justify-content: center; position:relative; min-width:150px; height:40px; margin-right: 10px; padding: 0 10px; border: 1px solid #aaa;}
+		.amimationBtnA em { display:block; position:absolute; z-index:10; background-color: #000;}
+		.amimationBtnA .el { left:-1px; bottom:-1px; width:2px; height:0;}
+		.amimationBtnA .et { left:-1px; top:-1px; width:0; height:2px}
+		.amimationBtnA .er { right:-1px; top:-1px; width:2px; height:0}
+		.amimationBtnA .eb { right:-1px; bottom:-1px; width:0; height:2px}
+		.amimationBtnA:hover .el {-webkit-animation:msbdAniL 1.4s 0.1s forwards; animation:msbdAniL 1.4s 0.1s forwards}
+		.amimationBtnA:hover .et {-webkit-animation:msbdAniT 1.4s 0.4s forwards; animation:msbdAniT 1.4s 0.4s forwards}
+		.amimationBtnA:hover .er {-webkit-animation:msbdAniR 1.4s 0.7s forwards; animation:msbdAniR 1.4s 0.7s forwards}
+		.amimationBtnA:hover .eb {-webkit-animation:msbdAniB 0.7s forwards; animation:msbdAniB 0.7s forwards}
+		@keyframes msbdAniL { 0%{height:0;} 25%{height:100%;} 48%{height:100%;} 49%{height:100%;} 100%{height:100%;}}
+		@keyframes msbdAniT { 0%{width:0;} 25%{width:100%;} 48%{width:100%;} 49%{width:100%;} 100%{width:100%;}}
+		@keyframes msbdAniR { 0%{height:0;} 25%{height:100%;} 50%{height:100%;} 51%{height:100%;} 100%{height:100%;}}
+		@keyframes msbdAniB { 0%{width:0;} 25%{width:100%;} 50%{width:100%;} 51%{width:100%;} 100%{width:100%;}}
+
+		.amimationBtnB { display: inline-block; overflow:hidden; position:relative; min-width:150px; border-radius: 4px;}
+		.amimationBtnB button { display: inline-flex; align-items: center; justify-content: center; position:relative; z-index:10; width:100%; height:40px; padding: 0 10px; border: 1px solid #000; border-radius: 4px; transition:all .3s ease;}
+		.amimationBtnB:hover button { color:#fff; border:1px solid darkblue;}
+		.amimationBtnB .btnBg { display:block; position:absolute; left:-30px; top:0; width:0; height:100%; background-color:darkblue; transition:all .4s ease; transform:matrix(1, 0, -0.6, 1, 0, 0);}
+		.amimationBtnB:hover .btnBg { left:0; width:100%; transform:matrix(1, 0, 0, 1, 0, 0);}
+	</style>
+</head>
+
+<body>
+<div id="wrap">
+	
+	<h3>기본 버튼</h3>
+	<div class="btnGroup">
+		<div class="btns">
+			<button type="button" class="btn default roundGray">재산권</button>
+			<button type="button" class="btn default bgGray">공공복리</button>
+			<button type="button" class="btn default bgBlue">적합하도록 하여야 한다</button>
+		</div>
+		<div class="btns">
+			<a href="javascript:void(0);" class="btn default roundGray">재산권</a>
+			<a href="javascript:void(0);" class="btn default bgGray">공공복리</a>
+			<a href="javascript:void(0);" class="btn default bgBlue">적합하도록 하여야 한다</a>
+		</div>
+	</div>
+
+	<br><br>
+
+	<h3>작은 버튼</h3>
+	<div class="btnGroup">
+		<div class="btns">
+			<button type="button" class="btn small roundGray">재산권</button>
+			<button type="button" class="btn small bgGray">공공복리</button>
+			<button type="button" class="btn small bgBlue">적합하도록 하여야 한다</button>
+		</div>
+		<div class="btns">
+			<a href="javascript:void(0);" class="btn small roundGray">재산권</a>
+			<a href="javascript:void(0);" class="btn small bgGray">공공복리</a>
+			<a href="javascript:void(0);" class="btn small bgBlue">적합하도록 하여야 한다</a>
+		</div>
+	</div>
+
+	<br><br>
+
+	<h3>애니메이션 버튼</h3>
+	<div class="btnGroup">
+		<div class="btns">
+			<a href="javascript:void(0);" class="amimationBtnA">
+				애니메이션 버튼 A
+				<em class="el"></em>
+				<em class="et"></em>
+				<em class="er"></em>
+				<em class="eb"></em>
+			</a>
+
+			<div class="amimationBtnB">
+				<span class="btnBg"></span>
+				<button type="button">애니메이션 버튼 B</button>
+			</div>
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>
