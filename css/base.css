@@ -13,6 +13,8 @@ html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,abbr,address,cite,code,del,d
 body {
 	font: 14px/1.5 "Malgun Gothic","맑은 고딕","Helvetica Neue","Apple SD Gothic Neo",sans-serif
 	color:#000;
+	word-break: keep-all;
+	-webkit-text-size-adjust: none;
 }
 
 a:link,
