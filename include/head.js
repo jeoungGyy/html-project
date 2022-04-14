@@ -1,7 +1,7 @@
 var str = '';
 
 str += '<meta http-equiv="X-UA-Compatible" content="IE=edge">';
-str += '<meta name="viewport" content="width=device-width, viewport-fit=cover">';
+str += '<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">';
 str += '<meta name="theme-color" content="#000000">';
 str += '<meta name="format-detection" content="telephone=no">';
 str += '<link rel="icon" type="image/png" sizes="192x192" href="../images/android-icon-192x192.png">';
